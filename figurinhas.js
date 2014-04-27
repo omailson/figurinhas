@@ -1,8 +1,7 @@
 var Core = function () {
     this._busy = false;
+    this._db = new RemoteDatabase();
 };
-
-Core.URI = "figurinhas.php";
 
 Core.prototype.isBusy = function () {
     return this._busy;
@@ -10,7 +9,7 @@ Core.prototype.isBusy = function () {
 
 Core.prototype.add = function (item) {
     this._busy = true;
-    var defer = $.get(Core.URI, {add: item});
+    var defer = this._db.add(item);
 
     defer.always((function () {
         this._busy = false;
