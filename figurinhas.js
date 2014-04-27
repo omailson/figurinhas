@@ -1,15 +1,20 @@
-var Figurinhas = {
-    BUSY: false,
-    URI: "figurinhas.php"
+var Core = function () {
+    this._busy = false;
 };
 
-var add = function (item) {
-    Figurinhas.BUSY = true;
-    var defer = $.get(Figurinhas.URI, {add: item});
+Core.URI = "figurinhas.php";
 
-    defer.always(function () {
-        Figurinhas.BUSY = false;
-    });
+Core.prototype.isBusy = function () {
+    return this._busy;
+};
+
+Core.prototype.add = function (item) {
+    this._busy = true;
+    var defer = $.get(Core.URI, {add: item});
+
+    defer.always((function () {
+        this._busy = false;
+    }).bind(this));
 
     return defer.promise();
 };
