@@ -1,0 +1,3 @@
+[submodule "js/externals/lawnchair"]
+	path = js/externals/lawnchair
+	url = https://github.com/brianleroux/lawnchair
