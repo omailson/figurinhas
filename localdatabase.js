@@ -25,25 +25,7 @@ LocalDatabase.prototype._getAdapters = function () {
     if (Modernizr.websqldatabase)
         adapters.push("webkit-sqlite");
 
-    // XXX Lawnchair version in use only support one adapter
-    // The code below is from a more recent version of the lib
-    // You can also update Lawnchair and change the code below to 'return adapters;'
-    var adapter;
-    for (var j = 0, k = adapters.length; j < k; j++) {
-        // itirates over the array of available adapters
-        for (var i = Lawnchair.adapters.length-1; i >= 0; i--) {
-            if (Lawnchair.adapters[i].adapter === adapters[j]) {
-                adapter = Lawnchair.adapters[i].valid() ? Lawnchair.adapters[i].adapter : undefined;
-                if (adapter) break;
-            }
-        }
-        if (adapter) break;
-    }
-
-    if (adapter)
-        return adapter;
-
-    return "window-name";
+    return adapters;
 };
 
 LocalDatabase.prototype.add = function (item) {
