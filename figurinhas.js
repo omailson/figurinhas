@@ -1,6 +1,6 @@
 var Core = function () {
     this._busy = false;
-    this._db = new RemoteDatabase();
+    this._db = new LocalDatabase();
 };
 
 Core.prototype.isBusy = function () {
