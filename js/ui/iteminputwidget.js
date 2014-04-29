@@ -1,5 +1,6 @@
 var ItemInputWidget = function (item) {
     this._item = item;
+    this._typeTimeoutID = 0;
 };
 
 ItemInputWidget.prototype.enableKeyPressEvent = function (callback) {
@@ -16,9 +17,11 @@ ItemInputWidget.prototype.enableListFilter = function (stickersList) {
         containsFilter.not(filterFn).slideUp();
         // Starts with filter
         containsFilter.filter(filterFn).slideDown();
-    }).bind(this)).keyup(function () {
-        $(this).change();
-    });
+    }).bind(this)).keyup((function () {
+        if (this._typeTimeoutID !== 0)
+            clearTimeout(this._typeTimeoutID);
+        this._typeTimeoutID = setTimeout(ItemInputWidget.prototype._onTypeTimedout.bind(this), 250);
+    }).bind(this));
 };
 
 ItemInputWidget.prototype.value = function () {
@@ -34,4 +37,9 @@ ItemInputWidget.prototype.setFocus = function (focus) {
         this._item.focus();
     else
         this._item.blur();
+};
+
+ItemInputWidget.prototype._onTypeTimedout = function () {
+    this._typeTimeoutID = 0;
+    this._item.change();
 };
