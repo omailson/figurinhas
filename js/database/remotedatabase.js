@@ -5,7 +5,7 @@ var RemoteDatabase = function () {
 RemoteDatabase.prototype = new Database();
 RemoteDatabase.prototype.constructor = RemoteDatabase;
 
-RemoteDatabase.URI = "figurinhas.php";
+RemoteDatabase.URI = "server/figurinhas.php";
 
 RemoteDatabase.prototype.add = function (item) {
     return $.get(RemoteDatabase.URI, {add: item});
