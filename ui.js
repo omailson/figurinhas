@@ -10,6 +10,7 @@ View.prototype.init = function () {
     this.btnAdd.click(View.prototype._onBtnAddClicked.bind(this));
     this.txtItem.keypress(View.prototype._onTxtItemKeyPressed.bind(this));
     this._populateStickersList();
+    this._enableListFilter();
 
     this._core = new Core();
 };
@@ -63,4 +64,19 @@ View.prototype._populateStickersList = function () {
         item = $("<li>").html(stickers[i]);
         this.stickersList.append(item);
     }
+};
+
+View.prototype._enableListFilter = function () {
+    this.txtItem.change((function () {
+        var filter = this.txtItem.val();
+        this.stickersList.find("li:not(:contains(" + filter + "))").slideUp();
+        var containsFilter = this.stickersList.find("li:contains(" + filter + ")");
+        var filterFn = function () { return $(this).html().indexOf(filter) === 0; };
+        // Contains filter but doesn't starts with it
+        containsFilter.not(filterFn).slideUp();
+        // Starts with filter
+        containsFilter.filter(filterFn).slideDown();
+    }).bind(this)).keyup(function () {
+        $(this).change();
+    });
 };
