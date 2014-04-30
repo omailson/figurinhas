@@ -8,6 +8,9 @@ var View = function () {
 View.prototype.init = function () {
     this.btnAdd.click(View.prototype._onBtnAddClicked.bind(this));
     this.inputWidget.enableKeyPressEvent(View.prototype._onTxtItemKeyPressed.bind(this));
+    this.inputWidget.enableTypingEvents(
+            null,
+            View.prototype._onStoppedTyping.bind(this));
 
     this._core = new Core();
 };
@@ -51,4 +54,12 @@ View.prototype._onBtnAddClicked = function () {
 View.prototype._onTxtItemKeyPressed = function (e) {
     if (e.keyCode === 13 && !this._core.isBusy() && this.inputWidget.value() !== "")
         this.add();
+};
+
+View.prototype._onStoppedTyping = function () {
+    var value = this.inputWidget.value();
+
+    this._core.hasItem(value).done((function (exists) {
+        this.inputWidget.setLineThrough(exists);
+    }).bind(this));
 };

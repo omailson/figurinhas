@@ -48,6 +48,13 @@ ItemInputWidget.prototype.setFocus = function (focus) {
         this._item.blur();
 };
 
+ItemInputWidget.prototype.setLineThrough = function (lineThrough) {
+    if (lineThrough)
+        this._item.css("text-decoration", "line-through");
+    else
+        this._item.css("text-decoration", "none");
+};
+
 ItemInputWidget.prototype._onTypeTimedout = function () {
     this._typeTimeoutID = 0;
     this._item.change();

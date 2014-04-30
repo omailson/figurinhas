@@ -17,3 +17,7 @@ Core.prototype.add = function (item) {
 
     return defer.promise();
 };
+
+Core.prototype.hasItem = function (item) {
+    return this._db.hasItem(item);
+};
