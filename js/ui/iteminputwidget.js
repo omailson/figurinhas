@@ -10,7 +10,8 @@ ItemInputWidget.prototype.enableKeyPressEvent = function (callback) {
     this._item.keypress(callback);
 };
 
-ItemInputWidget.prototype.enableTypingEvents = function (startedListener, stoppedListener) {
+ItemInputWidget.prototype.enableTypingEvents = function (startedListener, stoppedListener, timeout) {
+    timeout = timeout || 250;
     this._startedTypingListener = startedListener;
     this._stoppedTypingListener = stoppedListener;
 
@@ -29,7 +30,7 @@ ItemInputWidget.prototype.enableTypingEvents = function (startedListener, stoppe
 
             this._typeTimeoutID = setTimeout(
                 ItemInputWidget.prototype._onTypeTimedout.bind(this),
-                250);
+                timeout);
         }).bind(this));
 };
 
