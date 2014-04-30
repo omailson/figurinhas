@@ -39,3 +39,13 @@ LocalDatabase.prototype.add = function (item) {
 
     return defer.promise();
 };
+
+LocalDatabase.prototype.hasItem = function (item) {
+    var defer = $.Deferred();
+
+    this._database.exists(item, function (exists) {
+        defer.resolve(exists);
+    });
+
+    return defer.promise();
+};
