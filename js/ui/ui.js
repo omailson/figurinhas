@@ -1,7 +1,6 @@
 var View = function () {
     this.btnAdd = $("#add");
     this.inputWidget = new ItemInputWidget($("#item"));
-    this.stickersList = $("#stickerslist");
 
     this._core = null;
 };
@@ -9,8 +8,6 @@ var View = function () {
 View.prototype.init = function () {
     this.btnAdd.click(View.prototype._onBtnAddClicked.bind(this));
     this.inputWidget.enableKeyPressEvent(View.prototype._onTxtItemKeyPressed.bind(this));
-    this._populateStickersList();
-    this.inputWidget.enableListFilter(this.stickersList);
 
     this._core = new Core();
 };
@@ -54,14 +51,4 @@ View.prototype._onBtnAddClicked = function () {
 View.prototype._onTxtItemKeyPressed = function (e) {
     if (e.keyCode === 13 && !this._core.isBusy() && this.inputWidget.value() !== "")
         this.add();
-};
-
-View.prototype._populateStickersList = function () {
-    var stickerAlbum = new StickerAlbum();
-    var stickers = stickerAlbum.list();
-    var item;
-    for (var i = 0; i < stickers.length; i++) {
-        item = $("<li>").html(stickers[i]);
-        this.stickersList.append(item);
-    }
 };
