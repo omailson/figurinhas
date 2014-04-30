@@ -6,8 +6,12 @@ var ItemInputWidget = function (item) {
     this._stoppedTypingListener = null;
 };
 
-ItemInputWidget.prototype.enableKeyPressEvent = function (callback) {
+ItemInputWidget.prototype.keypress = function (callback) {
     this._item.keypress(callback);
+};
+
+ItemInputWidget.prototype.keydown = function (callback) {
+    this._item.keydown(callback);
 };
 
 ItemInputWidget.prototype.enableTypingEvents = function (startedListener, stoppedListener, timeout) {

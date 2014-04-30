@@ -7,7 +7,8 @@ var View = function () {
 
 View.prototype.init = function () {
     this.btnAdd.click(View.prototype._onBtnAddClicked.bind(this));
-    this.inputWidget.enableKeyPressEvent(View.prototype._onTxtItemKeyPressed.bind(this));
+    this.inputWidget.keypress(View.prototype._onTxtItemKeyPressed.bind(this));
+    this.inputWidget.keydown(View.prototype._onTxtItemKeyDown.bind(this));
     this.inputWidget.enableTypingEvents(
             null,
             View.prototype._onStoppedTyping.bind(this));
@@ -54,6 +55,17 @@ View.prototype._onBtnAddClicked = function () {
 View.prototype._onTxtItemKeyPressed = function (e) {
     if (e.keyCode === 13 && !this._core.isBusy() && this.inputWidget.value() !== "")
         this.add();
+};
+
+View.prototype._onTxtItemKeyDown = function (e) {
+    // Clear input if backspace is pressed and the item on input already exists
+    if (e.which === 8) { // Backspace
+        var value = this.inputWidget.value();
+        this._core.hasItem(value).done((function (exists) {
+            if (exists)
+                this.inputWidget.setValue("");
+        }).bind(this));
+    }
 };
 
 View.prototype._onStoppedTyping = function () {
