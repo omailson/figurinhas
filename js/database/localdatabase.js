@@ -49,3 +49,15 @@ LocalDatabase.prototype.hasItem = function (item) {
 
     return defer.promise();
 };
+
+LocalDatabase.prototype.remove = function (item) {
+    var defer = $.Deferred();
+
+    item = item + ""; // int -> string conversion
+
+    this._database.remove(item, function () {
+        defer.resolve(item);
+    });
+
+    return defer.promise();
+};
