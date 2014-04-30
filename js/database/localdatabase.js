@@ -31,7 +31,7 @@ LocalDatabase.prototype._getAdapters = function () {
 LocalDatabase.prototype.add = function (item) {
     var defer = $.Deferred();
 
-    this._database.save({key: item, value: true}, function (obj) {
+    this._database.save({key: item}, function (obj) {
         defer.resolve(item);
     });
 
