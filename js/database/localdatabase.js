@@ -31,7 +31,7 @@ LocalDatabase.prototype._getAdapters = function () {
 LocalDatabase.prototype.add = function (item) {
     var defer = $.Deferred();
 
-    item = item + ""; // int -> string conversion
+    item = Formatter.formatItem(item);
 
     this._database.save({key: item}, function (obj) {
         defer.resolve(item);
@@ -43,6 +43,8 @@ LocalDatabase.prototype.add = function (item) {
 LocalDatabase.prototype.hasItem = function (item) {
     var defer = $.Deferred();
 
+    item = Formatter.formatItem(item);
+
     this._database.exists(item, function (exists) {
         defer.resolve(exists);
     });
@@ -53,7 +55,7 @@ LocalDatabase.prototype.hasItem = function (item) {
 LocalDatabase.prototype.remove = function (item) {
     var defer = $.Deferred();
 
-    item = item + ""; // int -> string conversion
+    item = Formatter.formatItem(item);
 
     this._database.remove(item, function () {
         defer.resolve(item);
