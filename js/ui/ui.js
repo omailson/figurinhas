@@ -1,6 +1,7 @@
 var View = function () {
     this.btnAdd = $("#add");
     this.inputWidget = new ItemInputWidget($("#item"));
+    this.removeButton = new RemoveButtonWidget($("#removebutton"), $("#confirmbutton"));
 
     this._core = null;
 };
@@ -12,6 +13,7 @@ View.prototype.init = function () {
     this.inputWidget.enableTypingEvents(
             null,
             View.prototype._onStoppedTyping.bind(this));
+    this.removeButton.setConfirmedCallback(this.remove.bind(this));
 
     this._core = new Core();
 };
@@ -25,6 +27,29 @@ View.prototype.add = function () {
     this.disableInputs(true);
 
     var promise = this._core.add(item);
+    promise.done((function () {
+        this.inputWidget.setValue("");
+    }).bind(this));
+
+    promise.always((function () {
+        // Enable all inputs
+        this.disableInputs(false);
+        // Refocus
+        this.inputWidget.setFocus(true);
+    }).bind(this));
+
+    return promise;
+};
+
+View.prototype.remove = function () {
+    var item = this.inputWidget.value();
+
+    // Unfocus
+    this.inputWidget.setFocus(false);
+    // Disable all inputs
+    this.disableInputs(true);
+
+    var promise = this._core.remove(item);
     promise.done((function () {
         this.inputWidget.setValue("");
     }).bind(this));
