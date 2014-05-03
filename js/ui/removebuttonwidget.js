@@ -23,3 +23,21 @@ RemoveButtonWidget.prototype._onConfirmed = function (e) {
 RemoveButtonWidget.prototype.setConfirmedCallback = function (callback) {
     this._confirmedCallback = callback;
 };
+
+RemoveButtonWidget.prototype.show = function (animate) {
+    var animate = animate === undefined ? true : animate;
+
+    if (animate)
+        this._item.slideDown();
+    else
+        this._item.show();
+};
+
+RemoveButtonWidget.prototype.hide = function (animate) {
+    var animate = animate === undefined ? true : animate;
+
+    if (animate)
+        this._item.slideUp();
+    else
+        this._item.hide();
+};

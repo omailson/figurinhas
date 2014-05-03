@@ -14,6 +14,7 @@ View.prototype.init = function () {
             null,
             View.prototype._onStoppedTyping.bind(this));
     this.removeButton.setConfirmedCallback(this.remove.bind(this));
+    this.removeButton.hide(false);
 
     this._core = new Core();
 };
@@ -98,5 +99,9 @@ View.prototype._onStoppedTyping = function () {
 
     this._core.hasItem(value).done((function (exists) {
         this.inputWidget.setLineThrough(exists);
+        if (exists)
+            this.removeButton.show();
+        else
+            this.removeButton.hide();
     }).bind(this));
 };
