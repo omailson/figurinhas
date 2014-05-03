@@ -43,7 +43,9 @@ ItemInputWidget.prototype.value = function () {
 };
 
 ItemInputWidget.prototype.setValue = function (value) {
+    this._startedTyping();
     this._item.val(value);
+    this._stoppedTyping();
 };
 
 ItemInputWidget.prototype.setFocus = function (focus) {
