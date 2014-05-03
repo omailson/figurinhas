@@ -22,7 +22,35 @@
     <body>
         <div data-role="page">
             <div role="main" class="ui-content">
-                <input id="item" type="number" pattern="\d*" /><input type="button" id="add" value="Send" />
+                <input id="item" type="number" pattern="\d*" />
+                <p id="removebutton"><a href="#confirmdialog" data-rel="popup">Remove</a></p>
+                <input type="button" id="add" value="Send" />
+
+                <div id="confirmdialog"
+                    data-position-to="window"
+                    data-transition="pop"
+                    data-role="popup"
+                    data-overlay-theme="b"
+                    data-theme="b"
+                    data-dismissible="false">
+
+                    <div
+                        data-role="header"
+                        data-theme="a">
+                        <h1>Remove sticker?</h1>
+                    </div>
+
+                    <div role="main" class="ui-content">
+                        <h3 class="ui-title">Are you sure you want to remove this sticker?</h3>
+                        <p>Use this in case you previously added this sticker by mistake</p>
+                        <a href="#" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b" data-rel="back">Cancel</a>
+                        <a id="confirmbutton"
+                            href="#"
+                            class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b"
+                            data-rel="back"
+                            data-transition="flow">Delete</a>
+                    </div>
+                </div>
             </div>
         </div>
 

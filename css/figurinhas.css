@@ -2,3 +2,11 @@ input {
     font-size: 120%;
     font-weight: bold;
 }
+
+#removebutton {
+    margin: 0;
+}
+
+#confirmdialog {
+    max-width: 400px;
+}
