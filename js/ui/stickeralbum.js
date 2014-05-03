@@ -14,15 +14,15 @@ StickerAlbum.prototype.list = function () {
         list.push(i + "");
     }
 
-    list.push("l1");
-    list.push("l2");
-    list.push("l3");
-    list.push("l4");
-    list.push("j1");
-    list.push("j2");
-    list.push("j3");
-    list.push("j4");
-    list.push("w1");
+    list.push("L1");
+    list.push("L2");
+    list.push("L3");
+    list.push("L4");
+    list.push("J1");
+    list.push("J2");
+    list.push("J3");
+    list.push("J4");
+    list.push("W1");
 
     return list;
 };
