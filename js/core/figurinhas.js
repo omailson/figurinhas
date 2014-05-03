@@ -18,6 +18,17 @@ Core.prototype.add = function (item) {
     return defer.promise();
 };
 
+Core.prototype.remove = function (item) {
+    this._busy = true;
+    var defer = this._db.remove(item);
+
+    defer.always((function () {
+        this._busy = false;
+    }).bind(this));
+
+    return defer.promise();
+};
+
 Core.prototype.hasItem = function (item) {
     return this._db.hasItem(item);
 };
