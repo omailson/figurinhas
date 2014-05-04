@@ -14,3 +14,45 @@ input {
 #item.exists {
     text-decoration: line-through;
 }
+
+/* Progress */
+#progress {
+    position: relative;
+    width: 100%;
+
+    font-size: 70%;
+}
+
+#progressbar {
+    height: 2ex;
+    margin-right: 3em;
+
+    border: 1px solid #ccc;
+
+    -webkit-border-radius: 1ex;
+    -moz-border-radius: 1ex;
+    -ms-border-radius: 1ex;
+    -o-border-radius: 1ex;
+    border-radius: 1ex;
+}
+
+#progressbar .fill {
+    display: block;
+    height: 100%;
+    width: 0;
+
+    background-color: #06c;
+    -webkit-border-radius: 1ex;
+    -moz-border-radius: 1ex;
+    -ms-border-radius: 1ex;
+    -o-border-radius: 1ex;
+    border-radius: 1ex;
+}
+
+#progress .progresstext {
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    margin: 0;
+}

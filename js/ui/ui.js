@@ -4,6 +4,7 @@ var View = function () {
     this.removeButton = new RemoveButtonWidget($("#removebutton"), $("#confirmbutton"));
 
     this._core = null;
+    this.progressView = null;
 };
 
 View.prototype.init = function () {
@@ -17,6 +18,19 @@ View.prototype.init = function () {
     this.removeButton.hide(false);
 
     this._core = new Core();
+    this.progressView = this._createProgressView(this._core);
+};
+
+View.prototype._createProgressView = function (core) {
+    var stickerAlbum = new StickerAlbum();
+    var progressView = new ProgressView();
+
+    progressView.setTotal(stickerAlbum.count());
+    core.count().done(function (count) {
+        progressView.setValue(count);
+    });
+
+    return progressView;
 };
 
 View.prototype.add = function () {
