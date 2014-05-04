@@ -55,11 +55,11 @@ ItemInputWidget.prototype.setFocus = function (focus) {
         this._item.blur();
 };
 
-ItemInputWidget.prototype.setLineThrough = function (lineThrough) {
-    if (lineThrough)
-        this._item.css("text-decoration", "line-through");
+ItemInputWidget.prototype.setExists = function (exists) {
+    if (exists)
+        this._item.addClass("exists");
     else
-        this._item.css("text-decoration", "none");
+        this._item.removeClass("exists");
 };
 
 ItemInputWidget.prototype._onTypeTimedout = function () {

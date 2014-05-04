@@ -93,7 +93,7 @@ View.prototype._onStoppedTyping = function () {
     var value = this.inputWidget.value();
 
     this._core.hasItem(value).done((function (exists) {
-        this.inputWidget.setLineThrough(exists);
+        this.inputWidget.setExists(exists);
         if (exists)
             this.removeButton.show();
         else
