@@ -62,6 +62,27 @@ ItemInputWidget.prototype.setExists = function (exists) {
         this._item.removeClass("exists");
 };
 
+ItemInputWidget.prototype.toggleKeyboard = function () {
+    if (this.isNumericKeyboard())
+        this.setNumericKeyboard(false);
+    else
+        this.setNumericKeyboard(true);
+};
+
+ItemInputWidget.prototype.setNumericKeyboard = function (numeric) {
+    if (numeric) {
+        this._item.prop("type", "number");
+        this._item.prop("pattern", "\\d*");
+    } else {
+        this._item.prop("type", "text");
+        this._item.prop("pattern", null);
+    }
+};
+
+ItemInputWidget.prototype.isNumericKeyboard = function () {
+    return this._item.prop("type") === "number";
+};
+
 ItemInputWidget.prototype._onTypeTimedout = function () {
     this._typeTimeoutID = 0;
     this._item.change();

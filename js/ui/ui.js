@@ -45,6 +45,8 @@ View.prototype._createKeyboardIconWidget = function (item) {
         keyboardIconWidget.init(inputParent);
     });
 
+    keyboardIconWidget.setClickListener(this._onToggleKeyboard.bind(this));
+
     return keyboardIconWidget;
 };
 
@@ -132,4 +134,9 @@ View.prototype._onStoppedTyping = function () {
         else
             this.removeButton.hide();
     }).bind(this));
+};
+
+View.prototype._onToggleKeyboard = function () {
+    this.inputWidget.toggleKeyboard();
+    this.inputWidget.setFocus(true);
 };
