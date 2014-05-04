@@ -4,6 +4,9 @@ var ItemInputWidget = function (item) {
     this._typingEventsEnabled = false;
     this._startedTypingListener = null;
     this._stoppedTypingListener = null;
+
+    this._focusDispatcher = EventDispatcher.bind(this, "focusChanged");
+    this._initFocusTracker();
 };
 
 ItemInputWidget.prototype.keypress = function (callback) {
@@ -36,6 +39,15 @@ ItemInputWidget.prototype.enableTypingEvents = function (startedListener, stoppe
                 ItemInputWidget.prototype._onTypeTimedout.bind(this),
                 timeout);
         }).bind(this));
+};
+
+ItemInputWidget.prototype._initFocusTracker = function () {
+    this._item.focus(this._onFocusChanged.bind(this, true));
+    this._item.blur(this._onFocusChanged.bind(this, false));
+};
+
+ItemInputWidget.prototype._onFocusChanged = function (focused) {
+    this._focusDispatcher.dispatch(focused);
 };
 
 ItemInputWidget.prototype.value = function () {
