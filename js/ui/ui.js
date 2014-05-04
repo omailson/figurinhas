@@ -1,4 +1,6 @@
 var View = function () {
+    this._inputParent = $.Deferred();
+
     this.btnAdd = $("#add");
     this.inputWidget = new ItemInputWidget($("#item"));
     this.removeButton = new RemoveButtonWidget($("#removebutton"), $("#confirmbutton"));
@@ -8,6 +10,8 @@ var View = function () {
 };
 
 View.prototype.init = function () {
+    $(document).on("pagecreate", this._onPageCreated.bind(this));
+
     this.btnAdd.click(View.prototype._onBtnAddClicked.bind(this));
     this.inputWidget.keypress(View.prototype._onTxtItemKeyPressed.bind(this));
     this.inputWidget.keydown(View.prototype._onTxtItemKeyDown.bind(this));
@@ -81,6 +85,10 @@ View.prototype.remove = function () {
 
 View.prototype.disableInputs = function (disabled) {
     $("input").prop("disabled", disabled);
+};
+
+View.prototype._onPageCreated = function () {
+    this._inputParent.resolve($("#item").parent());
 };
 
 View.prototype._onBtnAddClicked = function () {
