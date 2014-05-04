@@ -1,7 +1,9 @@
 #item {
     font-size: 120%;
     font-weight: bold;
+}
 
+#item:focus {
     background-image: url("../img/keyboard.png");
     background-repeat: no-repeat;
     background-position-x: 95%;
