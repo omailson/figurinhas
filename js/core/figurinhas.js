@@ -32,3 +32,7 @@ Core.prototype.remove = function (item) {
 Core.prototype.hasItem = function (item) {
     return this._db.hasItem(item);
 };
+
+Core.prototype.count = function () {
+    return this._db.count();
+};

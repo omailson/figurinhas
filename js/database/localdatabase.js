@@ -63,3 +63,13 @@ LocalDatabase.prototype.remove = function (item) {
 
     return defer.promise();
 };
+
+LocalDatabase.prototype.count = function () {
+    var defer = $.Deferred();
+
+    this._database.keys(function (keys) {
+        defer.resolve(keys.length);
+    });
+
+    return defer.promise();
+};
