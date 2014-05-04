@@ -84,14 +84,9 @@ View.prototype._onTxtItemKeyPressed = function (e) {
 };
 
 View.prototype._onTxtItemKeyDown = function (e) {
-    // Clear input if backspace is pressed and the item on input already exists
-    if (e.which === 8) { // Backspace
-        var value = this.inputWidget.value();
-        this._core.hasItem(value).done((function (exists) {
-            if (exists)
-                this.inputWidget.setValue("");
-        }).bind(this));
-    }
+    // Clear input if backspace is pressed
+    if (e.which === 8) // Backspace
+        this.inputWidget.setValue("");
 };
 
 View.prototype._onStoppedTyping = function () {
