@@ -10,5 +10,5 @@ ProgressView.prototype.setTotal = function (total) {
 
 ProgressView.prototype.setValue = function (value) {
     this._value = value;
-    this._progressWidget.setValue(value);
+    this._progressWidget.setValue(value / this._total * 100);
 };
