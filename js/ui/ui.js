@@ -4,6 +4,7 @@ var View = function () {
     this.btnAdd = $("#add");
     this.inputWidget = new ItemInputWidget($("#item"));
     this.removeButton = new RemoveButtonWidget($("#removebutton"), $("#confirmbutton"));
+    this.keyboardIconWidget = this._createKeyboardIconWidget($("#keyboardiconwidget"));
 
     this._core = null;
     this.progressView = null;
@@ -35,6 +36,16 @@ View.prototype._createProgressView = function (core) {
     });
 
     return progressView;
+};
+
+View.prototype._createKeyboardIconWidget = function (item) {
+    var keyboardIconWidget = new KeyboardIconWidget(item);
+
+    this._inputParent.done(function (inputParent) {
+        keyboardIconWidget.init(inputParent);
+    });
+
+    return keyboardIconWidget;
 };
 
 View.prototype.add = function () {
