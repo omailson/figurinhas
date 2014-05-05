@@ -12,6 +12,7 @@ var View = function () {
 
 View.prototype.init = function () {
     $(document).on("pagecreate", this._onPageCreated.bind(this));
+    window.scrollTo(0,1);
 
     this.btnAdd.click(View.prototype._onBtnAddClicked.bind(this));
     this.inputWidget.keypress(View.prototype._onTxtItemKeyPressed.bind(this));
