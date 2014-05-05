@@ -1,7 +1,7 @@
 var ProgressWidget = function (item) {
     this._item = item;
-    this._progressFill = this._item.find("#progressbar .fill");
-    this._progressLabel = this._item.find(".progresstext span");
+    this._progressFill = DOMTree.get(R.ProgressWidget.Fill);
+    this._progressLabel = DOMTree.get(R.ProgressWidget.Label);
 };
 
 ProgressWidget.prototype.setValue = function (value) {

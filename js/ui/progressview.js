@@ -1,5 +1,5 @@
 var ProgressView = function () {
-    this._progressWidget = new ProgressWidget($("#progress"));
+    this._progressWidget = new ProgressWidget(DOMTree.get(R.ProgressWidget));
     this._total = 0;
     this._value = 0;
 };

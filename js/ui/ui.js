@@ -1,10 +1,10 @@
 var View = function () {
     this._inputParent = $.Deferred();
 
-    this.btnAdd = $("#add");
-    this.inputWidget = new ItemInputWidget($("#item"));
-    this.removeButton = new RemoveButtonWidget($("#removebutton"), $("#confirmbutton"));
-    this.keyboardIconWidget = this._createKeyboardIconWidget($("#keyboardiconwidget"));
+    this.btnAdd = DOMTree.get(R.AddButton);
+    this.inputWidget = new ItemInputWidget(DOMTree.get(R.InputText));
+    this.removeButton = new RemoveButtonWidget(DOMTree.get(R.RemoveButton), DOMTree.get(R.ConfirmButton));
+    this.keyboardIconWidget = this._createKeyboardIconWidget(DOMTree.get(R.InputText.KeyboardIcon));
 
     this._core = null;
     this.progressView = null;
@@ -99,11 +99,11 @@ View.prototype.remove = function () {
 };
 
 View.prototype.disableInputs = function (disabled) {
-    $("input").prop("disabled", disabled);
+    DOMTree.get(R.InputText).prop("disabled", disabled);
 };
 
 View.prototype._onPageCreated = function () {
-    this._inputParent.resolve($("#item").parent());
+    this._inputParent.resolve(DOMTree.get(R.InputText.Parent));
 };
 
 View.prototype._onBtnAddClicked = function () {
