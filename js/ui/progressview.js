@@ -12,3 +12,11 @@ ProgressView.prototype.setValue = function (value) {
     this._value = value;
     this._progressWidget.setValue(value / this._total * 100);
 };
+
+ProgressView.prototype.itemAdded = function () {
+    this.setValue(this._value + 1);
+};
+
+ProgressView.prototype.itemRemoved = function () {
+    this.setValue(this._value - 1);
+};

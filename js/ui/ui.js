@@ -61,6 +61,7 @@ View.prototype.add = function () {
     var promise = this._core.add(item);
     promise.done((function () {
         this.inputWidget.setValue("");
+        this.progressView.itemAdded();
     }).bind(this));
 
     promise.always((function () {
@@ -84,6 +85,7 @@ View.prototype.remove = function () {
     var promise = this._core.remove(item);
     promise.done((function () {
         this.inputWidget.setValue("");
+        this.progressView.itemRemoved();
     }).bind(this));
 
     promise.always((function () {
