@@ -40,6 +40,21 @@ LocalDatabase.prototype.add = function (item) {
     return defer.promise();
 };
 
+LocalDatabase.prototype.batchInsertion = function (items) {
+    var defer = $.Deferred();
+
+    var objs = items.map(function (item) {
+        item = Formatter.formatItem(item);
+        return {key: item};
+    });
+
+    this._database.batch(objs, function () {
+        defer.resolve();
+    });
+
+    return defer.promise();
+};
+
 LocalDatabase.prototype.hasItem = function (item) {
     var defer = $.Deferred();
 
@@ -69,6 +84,16 @@ LocalDatabase.prototype.count = function () {
 
     this._database.keys(function (keys) {
         defer.resolve(keys.length);
+    });
+
+    return defer.promise();
+};
+
+LocalDatabase.prototype.clear = function () {
+    var defer = $.Deferred();
+
+    this._database.nuke(function () {
+        defer.resolve();
     });
 
     return defer.promise();
