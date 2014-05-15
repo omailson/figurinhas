@@ -10,6 +10,7 @@ var R = {
     ProgressWidget: {
         root: $("#progress"),
         Fill: function () { return R.ProgressWidget.root.find("#progressbar .fill"); },
-        Label: function () { return R.ProgressWidget.root.find(".progresstext span"); }
+        Label: function () { return R.ProgressWidget.root.find(".progresstext span"); },
+        Total: $("#total")
     }
 };
